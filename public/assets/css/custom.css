@@ -1,0 +1,77 @@
+.logo{
+    color: #402495;
+}
+.info-banner-text {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.flow-text {
+    animation: flowing 20s linear infinite;
+    transform: translateX(10%);
+    display: flex;
+    min-width: 1200px;
+    align-items: center;
+}
+
+@keyframes flowing {
+    50% {
+        transform: translateX(-0%);
+    }
+}
+
+.icon-coins {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #0971fe;
+    color: #fff;
+    font-size: 100px;
+    height: 120px;
+    width: 120px;
+}
+
+.icon-calculator {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #0971fe;
+    color: #fff;
+    font-size: 32px;
+    height: 44px;
+    width: 44px;
+}
+
+.fiat-flag {
+    width: 30px;
+    height: 25px;
+}
+
+.bg-btc-dim {
+    background-color: #372c25 !important;;
+}
+
+.bg-eth-dim {
+    background-color: #20293c !important;;
+}
+
+.bg-usdt-dim {
+    background-color: #259C77 !important;
+}
+
+.bg-xrp-dim {
+    background-color: #22282E !important;
+}
+
+.coin-list {
+    cursor: pointer;
+}
+
+.calculator-input:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
