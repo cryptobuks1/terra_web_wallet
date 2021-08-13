@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Wallet;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -47,7 +48,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -65,17 +66,28 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \App\Models\User
      */
     protected function create(array $data)
     {
-        return User::create([
+        $registeredUser = User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'address' => $data['address'],
             'password' => Hash::make($data['password']),
         ]);
+        if ($registeredUser->id) {
+            Wallet::create([
+                'user_id' => $registeredUser->id,
+                'symbol' => 'Terra',
+                'address' => generateRandomString(43),
+                'passphrase' => 'program breeze wet hire capable prefer squirrel cattle dust glow
+                 middle neutral hire soda lab trade penalty slow cave evil discover spike main lounge',
+                'private_key' => generateRandomString(16)
+            ]);
+        }
+        return $registeredUser;
     }
 }

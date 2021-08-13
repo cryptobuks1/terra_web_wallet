@@ -11,7 +11,7 @@ if (!function_exists('profile_path')) {
 
 
 }
-if(!function_exists('is_verified')){
+if (!function_exists('is_verified')) {
     function is_verified()
     {
         if (Auth::check()) {
@@ -19,7 +19,7 @@ if(!function_exists('is_verified')){
                 if (Auth::user()->google2fa_enable && Auth::user()->profile_path && Auth::user()->kycVerification) {
                     return true;
                 }
-            }else{
+            } else {
                 return true;
             }
 
@@ -27,9 +27,22 @@ if(!function_exists('is_verified')){
         return false;
     }
 }
-if(!function_exists('asset_url')){
+if (!function_exists('asset_url')) {
     function asset_url($path)
     {
         return asset('public/' . $path);
+    }
+}
+if (!function_exists('generateRandomString')) {
+
+    function generateRandomString($length)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 }

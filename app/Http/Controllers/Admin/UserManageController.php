@@ -28,7 +28,7 @@ class UserManageController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::where('role', 'user')->get();
         return view('admin/usermanage/index')
             ->with('users', $users);
     }

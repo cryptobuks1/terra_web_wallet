@@ -27,15 +27,15 @@
                                 <div class="card card-bordered">
                                     <div class="nk-wgw">
                                         <div class="nk-wgw-inner">
-                                            <a class="nk-wgw-name" href="{{url('wallet/BTC')}}">
+                                            <a class="nk-wgw-name" href="{{url('wallet/'.$wallet->id)}}">
                                                 <div class="nk-wgw-icon">
                                                     <em class="icon ni ni-coins"></em>
                                                 </div>
                                                 <h5 class="nk-wgw-title title">Terra Wallet</h5>
                                             </a>
                                             <div class="nk-wgw-balance">
-                                                <div class="amount">4.434953<span
-                                                        class="currency currency-btc">Terra</span></div>
+                                                <div class="amount">{{$wallet->balance}}<span
+                                                        class="currency currency-btc">{{$wallet->symbol}}</span></div>
                                             </div>
                                         </div>
                                         <div class="nk-wgw-actions">
@@ -53,7 +53,7 @@
                                                     class="icon ni ni-more-h"></em></a>
                                             <div class="dropdown-menu dropdown-menu-xs dropdown-menu-right">
                                                 <ul class="link-list-plain sm">
-                                                    <li><a href="#">Details</a></li>
+                                                    <li><a href="{{url('wallet/'.$wallet->id)}}">Details</a></li>
                                                     <li><a href="#">Edit</a></li>
                                                     <li><a href="#">Delete</a></li>
                                                     <li><a href="#">Make Default</a></li>

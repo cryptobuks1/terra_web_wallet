@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Wallet extends Model
 {
 
-    protected $fillable = ['id', 'user_id', 'symbol', 'address', 'passpharse', 'balance'];
+    protected $fillable = ['id', 'user_id', 'symbol', 'address', 'passphrase', 'private_key', 'balance'];
 
     public function user(): BelongsTo
     {

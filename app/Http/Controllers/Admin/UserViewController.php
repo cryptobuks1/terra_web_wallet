@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-Use App\Models\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
@@ -29,16 +30,18 @@ class UserViewController extends Controller
     public function index($user_id)
     {
         $user = User::find($user_id);
-        return view('admin/usermanage/userview', ['user' => $user]);
+        $wallets = Wallet::where('user_id', $user_id)->get();
+        return view('admin/usermanage/userview', ['user' => $user, 'wallets' => $wallets]);
     }
 
-    public function update(Request $request){
-        $user = Auth::user();
+    public function update(Request $request)
+    {
+        $user = User::find($request->user_id);
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->address = $request->address;
         $user->save();
-        return redirect()->back()->with('success',"Successfully Changed Password");
+        return redirect()->back()->with('success', "Successfully Changed Password");
     }
 
     public function security()
@@ -48,11 +51,12 @@ class UserViewController extends Controller
     }
 
 
-    public function changePassword(Request $request){
+    public function changePassword(Request $request)
+    {
         $user = Auth::user();
         $user->password = Hash::make($request->password);
         $user->save();
-        return redirect()->back()->with('success',"Successfully Changed Password");
+        return redirect()->back()->with('success', "Successfully Changed Password");
     }
 
 

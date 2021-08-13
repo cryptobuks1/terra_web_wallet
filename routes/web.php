@@ -26,7 +26,7 @@ Auth::routes();
 Route::get('/wallet', [App\Http\Controllers\WalletController::class, 'index'])
     ->name('wallet-index')
     ->middleware(['auth']);
-Route::get('/wallet/{coin}', [App\Http\Controllers\WalletController::class, 'coinWallet'])
+Route::get('/wallet/{walletId}', [App\Http\Controllers\WalletController::class, 'coinWallet'])
     ->middleware(['auth']);
 
 Route::get('/myaccount', [App\Http\Controllers\MyaccountController::class, 'index'])
@@ -46,4 +46,5 @@ Route::match(['get', 'post'], '/botman', [App\Http\Controllers\BotManController:
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/', [App\Http\Controllers\Admin\UserManageController::class, 'index'])->name('admin_dashboard');
     Route::get('/userview/{user_id}', [App\Http\Controllers\Admin\UserViewController::class, 'index'])->name('user_view');
+    Route::post('/user_update', [App\Http\Controllers\Admin\UserViewController::class, 'update'])->name('user_update');
 });

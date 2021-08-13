@@ -9,18 +9,11 @@
                         <div class="nk-block-head-sub"><a class="back-to" href="{{route('wallet-index')}}"><em
                                     class="icon ni ni-arrow-left"></em><span>My Wallets</span></a></div>
                         <div class="nk-wgwh">
-                            <em class="icon-circle icon-circle-lg icon ni ni-sign-btc"></em>
+                            <em class="icon-circle icon-circle-lg icon ni ni-coins"></em>
                             <div class="nk-wgwh-title h5"> Terra Wallet <small>/</small>
                                 <div class="dropdown">
                                     <a class="dropdown-indicator-caret" data-offset="0,4" href="#"
                                        data-toggle="dropdown"><small>USD</small></a>
-                                    <div class="dropdown-menu dropdown-menu-xxs dropdown-menu-center">
-                                        <ul class="link-list-plain text-center">
-                                            <li><a href="#">BTC</a></li>
-                                            <li><a href="#">ETH</a></li>
-                                            <li><a href="#">YEN</a></li>
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -35,10 +28,8 @@
                                 <div class="nk-wg1-item mr-xl-4">
                                     <div class="nk-wg1-title text-soft">Available Balance</div>
                                     <div class="nk-wg1-amount">
-                                        <div class="amount">2.010550 <small class="currency currency-usd">BTC</small>
+                                        <div class="amount">{{$wallet->balance}} <small class="currency currency-usd">{{$wallet->symbol}}</small>
                                         </div>
-                                        <div class="amount-sm">Balance in <span>2.010550 <span
-                                                    class="currency currency-usd">BTC</span></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -72,10 +63,10 @@
                                     </div>
                                     <div class="nk-wg5-text">
                                         <div class="nk-wg5-amount">
-                                            <div class="amount"> 20.001500 <span
-                                                    class="currency currency-btc">BTC</span>
+                                            <div class="amount"> 0.000000 <span
+                                                    class="currency currency-btc">{{$wallet->symbol}}</span>
                                             </div>
-                                            <div class="amount-sm"> 972,360.72 <span
+                                            <div class="amount-sm"> 0.000000 <span
                                                     class="currency currency-usd">USD</span>
                                             </div>
                                         </div>
@@ -96,10 +87,10 @@
                                     </div>
                                     <div class="nk-wg5-text">
                                         <div class="nk-wg5-amount">
-                                            <div class="amount"> 20.001500 <span
-                                                    class="currency currency-btc">BTC</span>
+                                            <div class="amount"> 0.000000 <span
+                                                    class="currency currency-btc">{{$wallet->symbol}}</span>
                                             </div>
-                                            <div class="amount-sm"> 972,360.72 <span
+                                            <div class="amount-sm"> 0.000000 <span
                                                     class="currency currency-usd">USD</span>
                                             </div>
                                         </div>
@@ -121,10 +112,10 @@
                                     </div>
                                     <div class="nk-wg5-text">
                                         <div class="nk-wg5-amount">
-                                            <div class="amount"> 20.001500 <span
-                                                    class="currency currency-btc">BTC</span>
+                                            <div class="amount"> 0.000000 <span
+                                                    class="currency currency-btc">{{$wallet->symbol}}</span>
                                             </div>
-                                            <div class="amount-sm"> 972,360.72 <span
+                                            <div class="amount-sm"> 0.000000 <span
                                                     class="currency currency-usd">USD</span>
                                             </div>
                                         </div>

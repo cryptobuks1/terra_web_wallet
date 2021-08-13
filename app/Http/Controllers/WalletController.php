@@ -34,11 +34,9 @@ class WalletController extends Controller
             ->with('wallets', $wallets);
     }
 
-    public function coinWallet(Request $request)
+    public function coinWallet($walletId)
     {
-
-        $coin_symbol = $request->coin;
-
-        return view('wallet/coin', ['coin_symbol' => $coin_symbol]);
+        $wallet = Wallet::find($walletId);
+        return view('wallet/coin', ['wallet' => $wallet]);
     }
 }
