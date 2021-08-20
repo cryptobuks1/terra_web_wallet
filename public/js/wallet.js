@@ -40603,55 +40603,7 @@ $(document).ready( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_r
   }, _callee);
 })));
 $('#depositBtn').click( /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
-    var account, anchorEarn;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            e.preventDefault();
-            account = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.MnemonicKey({
-              mnemonic: mnemonic
-            });
-            anchorEarn = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.AnchorEarn({
-              chain: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.CHAINS.TERRA,
-              network: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.NETWORKS.COLUMBUS_4,
-              mnemonic: account.mnemonic
-            });
-            _context2.prev = 3;
-            _context2.next = 6;
-            return anchorEarn.deposit({
-              currency: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.DENOMS.UST,
-              amount: $('#deposit_balance').val(),
-              // 12.345 UST or 12345000 uusd
-              log: function log(data) {
-                $('#depositForm').submit();
-              }
-            });
-
-          case 6:
-            _context2.next = 11;
-            break;
-
-          case 8:
-            _context2.prev = 8;
-            _context2.t0 = _context2["catch"](3);
-            alert('Insufficient Balance');
-
-          case 11:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2, null, [[3, 8]]);
-  }));
-
-  return function (_x) {
-    return _ref2.apply(this, arguments);
-  };
-}());
-$('#withdrawBtn').click( /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
     var account, anchorEarn;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
       while (1) {
@@ -40668,13 +40620,41 @@ $('#withdrawBtn').click( /*#__PURE__*/function () {
             });
             _context3.prev = 3;
             _context3.next = 6;
-            return anchorEarn.withdraw({
+            return anchorEarn.deposit({
               currency: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.DENOMS.UST,
               amount: $('#deposit_balance').val(),
               // 12.345 UST or 12345000 uusd
-              log: function log(data) {
-                $('#withdrawForm').submit();
-              }
+              log: function () {
+                var _log = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(data) {
+                  var balanceInfo;
+                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+                    while (1) {
+                      switch (_context2.prev = _context2.next) {
+                        case 0:
+                          _context2.next = 2;
+                          return anchorEarn.balance({
+                            currencies: [_anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.DENOMS.UST]
+                          });
+
+                        case 2:
+                          balanceInfo = _context2.sent;
+                          $('#deposit-anchor').modal('hide');
+                          $('#walletBalance').html(balanceInfo.total_account_balance_in_ust);
+
+                        case 5:
+                        case "end":
+                          return _context2.stop();
+                      }
+                    }
+                  }, _callee2);
+                }));
+
+                function log(_x2) {
+                  return _log.apply(this, arguments);
+                }
+
+                return log;
+              }()
             });
 
           case 6:
@@ -40684,7 +40664,7 @@ $('#withdrawBtn').click( /*#__PURE__*/function () {
           case 8:
             _context3.prev = 8;
             _context3.t0 = _context3["catch"](3);
-            alert('Insufficient Balance');
+            alert(_context3.t0);
 
           case 11:
           case "end":
@@ -40694,7 +40674,84 @@ $('#withdrawBtn').click( /*#__PURE__*/function () {
     }, _callee3, null, [[3, 8]]);
   }));
 
-  return function (_x2) {
+  return function (_x) {
+    return _ref2.apply(this, arguments);
+  };
+}());
+$('#withdrawBtn').click( /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(e) {
+    var account, anchorEarn;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            e.preventDefault();
+            account = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.MnemonicKey({
+              mnemonic: mnemonic
+            });
+            anchorEarn = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.AnchorEarn({
+              chain: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.CHAINS.TERRA,
+              network: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.NETWORKS.COLUMBUS_4,
+              mnemonic: account.mnemonic
+            });
+            _context5.prev = 3;
+            _context5.next = 6;
+            return anchorEarn.withdraw({
+              currency: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.DENOMS.UST,
+              amount: $('#withdraw_balance').val(),
+              // 12.345 UST or 12345000 uusd
+              log: function () {
+                var _log2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(data) {
+                  var balanceInfo;
+                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+                    while (1) {
+                      switch (_context4.prev = _context4.next) {
+                        case 0:
+                          _context4.next = 2;
+                          return anchorEarn.balance({
+                            currencies: [_anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.DENOMS.UST]
+                          });
+
+                        case 2:
+                          balanceInfo = _context4.sent;
+                          $('#withdraw-anchor').modal('hide');
+                          $('#walletBalance').html(balanceInfo.total_account_balance_in_ust);
+
+                        case 5:
+                        case "end":
+                          return _context4.stop();
+                      }
+                    }
+                  }, _callee4);
+                }));
+
+                function log(_x4) {
+                  return _log2.apply(this, arguments);
+                }
+
+                return log;
+              }()
+            });
+
+          case 6:
+            _context5.next = 12;
+            break;
+
+          case 8:
+            _context5.prev = 8;
+            _context5.t0 = _context5["catch"](3);
+            console.log(_context5.t0);
+            alert(_context5.t0);
+
+          case 12:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5, null, [[3, 8]]);
+  }));
+
+  return function (_x3) {
     return _ref3.apply(this, arguments);
   };
 }());

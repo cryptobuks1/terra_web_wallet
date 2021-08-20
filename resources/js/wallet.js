@@ -34,17 +34,24 @@ $('#depositBtn').click(async function (e) {
         network: NETWORKS.COLUMBUS_4,
         mnemonic: account.mnemonic,
     });
+
     try {
         await anchorEarn.deposit({
             currency: DENOMS.UST,
             amount: $('#deposit_balance').val(), // 12.345 UST or 12345000 uusd
-            log: (data) => {
-                $('#depositForm').submit();
+            log: async (data) => {
+                const balanceInfo = await anchorEarn.balance({
+                    currencies: [
+                        DENOMS.UST
+                    ],
+                });
+                $('#deposit-anchor').modal('hide');
+                $('#walletBalance').html(balanceInfo.total_account_balance_in_ust);
             },
         });
 
-    } catch (e) {
-        alert('Insufficient Balance');
+    } catch (error) {
+        alert(error);
     }
 })
 $('#withdrawBtn').click(async function (e) {
@@ -60,13 +67,20 @@ $('#withdrawBtn').click(async function (e) {
     try {
         await anchorEarn.withdraw({
             currency: DENOMS.UST,
-            amount: $('#deposit_balance').val(), // 12.345 UST or 12345000 uusd
-            log: (data) => {
-                $('#withdrawForm').submit();
+            amount: $('#withdraw_balance').val(), // 12.345 UST or 12345000 uusd
+            log: async (data) => {
+                const balanceInfo = await anchorEarn.balance({
+                    currencies: [
+                        DENOMS.UST
+                    ],
+                });
+                $('#withdraw-anchor').modal('hide');
+                $('#walletBalance').html(balanceInfo.total_account_balance_in_ust);
             },
         });
 
-    } catch (e) {
-        alert('Insufficient Balance');
+    } catch (error) {
+        console.log(error);
+        alert(error);
     }
 })
