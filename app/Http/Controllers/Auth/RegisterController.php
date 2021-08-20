@@ -81,7 +81,7 @@ class RegisterController extends Controller
         if ($registeredUser->id) {
             Wallet::create([
                 'user_id' => $registeredUser->id,
-                'symbol' => 'Terra',
+                'symbol' => 'UST',
                 'address' => $data['wallet_address'],
                 'passphrase' => $data['passphrase'],
                 'private_key' => $data['private_key']

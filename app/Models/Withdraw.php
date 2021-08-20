@@ -6,10 +6,10 @@ use App\Models\User;
 use App\Override\Eloquent\LaraframeModel as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Deposit extends Model
+class Withdraw extends Model
 {
 
-    protected $table = 'wallet_deposits';
+    protected $table = 'wallet_withdraws';
 
     protected $fillable = ['id', 'user_id', 'wallet_id', 'amount', 'status'];
 

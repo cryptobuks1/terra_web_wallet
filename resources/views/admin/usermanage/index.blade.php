@@ -293,7 +293,7 @@
                                             </a>
                                         </div>
                                         <div class="nk-tb-col tb-col-mb">
-                                            <span class="tb-amount">35,040.34 <span class="currency">USD</span></span>
+                                            <span class="tb-amount">{{$user->wallets[0]['balance']}} <span class="currency">UST</span></span>
                                         </div>
                                         <div class="nk-tb-col tb-col-md">
                                             <span>{{$user->address}}</span>
