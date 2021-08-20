@@ -20,7 +20,16 @@
         "resolve-url-loader": "^3.1.2",
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1",
+        "stream-browserify": "^3.0.0",
         "vue": "^2.6.12",
-        "vue-template-compiler": "^2.6.12"
+        "vue-loader": "15.9.7",
+        "vue-template-compiler": "^2.6.12",
+        "webpack-cli": "^4.8.0"
+    },
+    "dependencies": {
+        "@anchor-protocol/anchor-earn": "^1.0.2",
+        "@terra-money/terra.js": "^2.0.1",
+        "cipher-base": "^1.0.4",
+        "webpack": "^5.50.0"
     }
 }

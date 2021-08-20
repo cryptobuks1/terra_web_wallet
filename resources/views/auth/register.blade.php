@@ -40,7 +40,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <form action="{{route('register')}}" method="post" class="form-validate">
+                            <form action="{{route('register')}}" method="post" id="registerForm" class="form-validate">
                                 @csrf
                                 <div class="row g-gs">
                                     <div class="col-md-6">
@@ -121,13 +121,16 @@
                                                     <em class="passcode-icon icon-show icon ni ni-eye"></em>
                                                     <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
                                                 </a>
-                                                <input type="password" class="form-control form-control-lg" id="confirmed_password"
+                                                <input type="password" class="form-control form-control-lg" id="password_confirmation"
                                                        placeholder="Enter your passcode" name="password_confirmation" required>
                                                 @if ($errors->has('password_confirmation'))
                                                     <span class="help-block">
                                                         <strong>{{ $errors->first('password_confirmation') }}</strong>
                                                     </span>
                                                 @endif
+                                                <input type="hidden" name="passphrase"  id="passphrase"/>
+                                                <input type="hidden" name="private_key" id="private_key"/>
+                                                <input type="hidden" name="wallet_address" id="wallet_address"/>
                                             </div>
                                         </div>
                                     </div>
@@ -142,7 +145,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <button class="btn btn-lg btn-primary btn-block">Register</button>
+                                            <button class="btn btn-lg btn-primary btn-block" id="registerBtn">Register</button>
                                         </div>
                                     </div>
                                 </div>
@@ -209,5 +212,6 @@
 </div>
 <script src="{{asset_url('dashlite/assets/js/bundle.js?ver=2.2.0')}}"></script>
 <script src="{{asset_url('dashlite/assets/js/scripts.js?ver=2.2.0')}}"></script>
+<script src="{{asset_url('js/wallet.js?ver=2.2.0')}}"></script>
 </body>
 </html>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Deposit;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -42,6 +43,23 @@ class UserViewController extends Controller
         $user->address = $request->address;
         $user->save();
         return redirect()->back()->with('success', "Successfully Changed Password");
+    }
+
+    public function fund(Request $request)
+    {
+        $wallet = Wallet::find($request->wallet_id);
+        $wallet->balance = $wallet->balance + $request->balance;
+        $wallet->save();
+        return redirect()->back()->with('success', "Successfully Funded");
+    }
+    public function deposit(Request $request)
+    {
+        $wallet = Deposit::create([
+            'user_id'=>$request->user_id,
+            'wallet_id'=>$request->wallet_id,
+            'amount'=>$request->deposit_balance
+        ]);
+        return redirect()->back()->with('success', "Successfully Deposited");
     }
 
     public function security()

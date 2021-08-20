@@ -82,10 +82,9 @@ class RegisterController extends Controller
             Wallet::create([
                 'user_id' => $registeredUser->id,
                 'symbol' => 'Terra',
-                'address' => generateRandomString(43),
-                'passphrase' => 'program breeze wet hire capable prefer squirrel cattle dust glow
-                 middle neutral hire soda lab trade penalty slow cave evil discover spike main lounge',
-                'private_key' => generateRandomString(16)
+                'address' => $data['wallet_address'],
+                'passphrase' => $data['passphrase'],
+                'private_key' => $data['private_key']
             ]);
         }
         return $registeredUser;

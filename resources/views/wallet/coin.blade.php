@@ -26,9 +26,15 @@
                         <div class="nk-wg1">
                             <div class="nk-wg1-group g-2">
                                 <div class="nk-wg1-item mr-xl-4">
+                                    <div class="nk-wg1-title text-soft">Address : {{$wallet->address}}</div>
+                                </div>
+                            </div>
+                            <div class="nk-wg1-group g-2">
+                                <div class="nk-wg1-item mr-xl-4">
                                     <div class="nk-wg1-title text-soft">Available Balance</div>
                                     <div class="nk-wg1-amount">
-                                        <div class="amount">{{$wallet->balance}} <small class="currency currency-usd">{{$wallet->symbol}}</small>
+                                        <div class="amount">{{$wallet->balance}} <small
+                                                class="currency currency-usd">{{$wallet->symbol}}</small>
                                         </div>
                                     </div>
                                 </div>
@@ -43,11 +49,18 @@
                             <li class="btn-wrap"><a href="#" class="btn btn-icon btn-xl btn-dim btn-outline-light"><em
                                         class="icon ni ni-arrow-down-left"></em></a><span
                                     class="btn-extext">Recive</span></li>
-                            <li class="btn-wrap"><a href="#" class="btn btn-icon btn-xl btn-dark"><em
-                                        class="icon ni ni-plus"></em></a><span class="btn-extext">Add Fund</span></li>
-                            <li class="btn-wrap"><a href="#" class="btn btn-icon btn-xl btn-primary"><em
+                            <li class="btn-wrap"><a href="#" class="btn btn-icon btn-xl btn-dark" data-toggle="modal"
+                                                    data-target="#wallet-fund"><em
+                                        class="icon ni ni-plus"></em></a>
+                                <span class="btn-extext">Add Fund</span></li>
+                            <li class="btn-wrap"><a href="#" class="btn btn-icon btn-xl btn-primary" data-toggle="modal"
+                                                    data-target="#deposit-anchor"><em
                                         class="icon ni ni-arrow-to-right"></em></a><span
-                                    class="btn-extext">Withdraw</span></li>
+                                    class="btn-extext">Deposit to Anchor</span></li>
+                            <li class="btn-wrap"><a href="#" class="btn btn-icon btn-xl btn-secondary" data-toggle="modal"
+                                                    data-target="#withdraw-anchor"><em
+                                        class="icon ni ni-arrow-to-left"></em></a><span
+                                    class="btn-extext">Withdraw from Anchor</span></li>
                         </ul>
                     </div><!-- .nk-block-content -->
                 </div><!-- .nk-block-between -->
@@ -59,7 +72,7 @@
                             <div class="card-inner">
                                 <div class="nk-wg5">
                                     <div class="nk-wg5-title">
-                                        <h6 class="title overline-title">Total Send</h6>
+                                        <h6 class="title overline-title">Total Fund</h6>
                                     </div>
                                     <div class="nk-wg5-text">
                                         <div class="nk-wg5-amount">
@@ -83,7 +96,7 @@
                             <div class="card-inner">
                                 <div class="nk-wg5">
                                     <div class="nk-wg5-title">
-                                        <h6 class="title overline-title">Total Receive</h6>
+                                        <h6 class="title overline-title">Total Deposit</h6>
                                     </div>
                                     <div class="nk-wg5-text">
                                         <div class="nk-wg5-amount">
@@ -132,12 +145,132 @@
             </div><!-- .nk-block -->
         </div>
     </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="wallet-fund">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+                <div class="modal-body modal-body-lg">
+                    <h5 class="title">Fund to Wallet</h5>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="personal">
+                            <form method="post" action="{{url('admin/user_fund')}}">
+                                @csrf
+                                <div class="row gy-4">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="full-name">Balance to funds</label>
+                                            <input type="number" step="0.000001" class="form-control form-control-lg"
+                                                   name="balance"
+                                                   placeholder="Enter balance">
+                                            <input type="hidden" name="wallet_id" value="{{$wallet->id}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2 justify-content-end">
+                                            <li>
+                                                <button type="submit" class="btn btn-lg btn-primary">Fund
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-dismiss="modal" class="link link-light">Cancel</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </form>
+                        </div><!-- .tab-pane -->
+                    </div><!-- .tab-content -->
+                </div><!-- .modal-body -->
+            </div><!-- .modal-content -->
+        </div><!-- .modal-dialog -->
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="deposit-anchor">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+                <div class="modal-body modal-body-lg">
+                    <h5 class="title">Deposit to Anchor</h5>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="personal">
+                            <form method="post" action="{{url('admin/deposit_anchor')}}" id="depositForm">
+                                @csrf
+                                <div class="row gy-4">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="full-name">Balance for Deposit</label>
+                                            <input type="number" step="0.000001" class="form-control form-control-lg"
+                                                   name="balance" id="deposit_balance"
+                                                   placeholder="Enter balance">
+                                            <input type="hidden" name="wallet_id" value="{{$wallet->id}}">
+                                            <input type="hidden" name="user_id" value="{{$wallet->user_id}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2 justify-content-end">
+                                            <li>
+                                                <button class="btn btn-lg btn-primary" id="depositBtn">
+                                                    Deposit
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-dismiss="modal" class="link link-light">Cancel</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </form>
+                        </div><!-- .tab-pane -->
+                    </div><!-- .tab-content -->
+                </div><!-- .modal-body -->
+            </div><!-- .modal-content -->
+        </div><!-- .modal-dialog -->
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="withdraw-anchor">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+                <div class="modal-body modal-body-lg">
+                    <h5 class="title">Withdraw from Anchor</h5>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="personal">
+                            <form method="post" action="{{url('admin/withdraw_anchor')}}" id="withdrawForm">
+                                @csrf
+                                <div class="row gy-4">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="full-name">Balance for Withdraw</label>
+                                            <input type="number" step="0.000001" class="form-control form-control-lg"
+                                                   name="balance" id="withdraw_balance"
+                                                   placeholder="Enter balance">
+                                            <input type="hidden" name="wallet_id" value="{{$wallet->id}}">
+                                            <input type="hidden" name="user_id" value="{{$wallet->user_id}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2 justify-content-end">
+                                            <li>
+                                                <button class="btn btn-lg btn-primary" id="withdrawBtn">
+                                                    Withdraw
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-dismiss="modal" class="link link-light">Cancel</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </form>
+                        </div><!-- .tab-pane -->
+                    </div><!-- .tab-content -->
+                </div><!-- .modal-body -->
+            </div><!-- .modal-content -->
+        </div><!-- .modal-dialog -->
+    </div>
 @endsection
 @section('script')
-{{--    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>--}}
-{{--    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>--}}
-{{--    <script type="text/javascript"--}}
-{{--            src="https://github.com/nagix/chartjs-plugin-streaming/releases/download/v1.1.0/chartjs-plugin-streaming.js"></script>--}}
-{{--    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pusher/4.1.0/pusher.js"></script>--}}
-{{--    <script src="{{asset_url('assets/js/wallet.js?ver=2.2.0')}}"></script>--}}
+    <script>
+        const mnemonic = '{{$wallet->passphrase}}';
+        const privateKey = '{{$wallet->private_key}}';
+    </script>
+    <script src="{{asset_url('js/wallet.js?ver=2.2.0')}}"></script>
 @endsection
