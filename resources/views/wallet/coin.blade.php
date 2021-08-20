@@ -49,18 +49,23 @@
                             <li class="btn-wrap"><a href="#" class="btn btn-icon btn-xl btn-dim btn-outline-light"><em
                                         class="icon ni ni-arrow-down-left"></em></a><span
                                     class="btn-extext">Recive</span></li>
-                            <li class="btn-wrap"><a href="#" class="btn btn-icon btn-xl btn-dark" data-toggle="modal"
-                                                    data-target="#wallet-fund"><em
-                                        class="icon ni ni-plus"></em></a>
-                                <span class="btn-extext">Add Fund</span></li>
-                            <li class="btn-wrap"><a href="#" class="btn btn-icon btn-xl btn-primary" data-toggle="modal"
-                                                    data-target="#deposit-anchor"><em
-                                        class="icon ni ni-arrow-to-right"></em></a><span
-                                    class="btn-extext">Deposit to Anchor</span></li>
-                            <li class="btn-wrap"><a href="#" class="btn btn-icon btn-xl btn-secondary" data-toggle="modal"
-                                                    data-target="#withdraw-anchor"><em
-                                        class="icon ni ni-arrow-to-left"></em></a><span
-                                    class="btn-extext">Withdraw from Anchor</span></li>
+                            @if(Auth::isAdmin())
+                                <li class="btn-wrap"><a href="#" class="btn btn-icon btn-xl btn-dark"
+                                                        data-toggle="modal"
+                                                        data-target="#wallet-fund"><em
+                                            class="icon ni ni-plus"></em></a>
+                                    <span class="btn-extext">Add Fund</span></li>
+                                <li class="btn-wrap"><a href="#" class="btn btn-icon btn-xl btn-primary"
+                                                        data-toggle="modal"
+                                                        data-target="#deposit-anchor"><em
+                                            class="icon ni ni-arrow-to-right"></em></a><span
+                                        class="btn-extext">Deposit to Anchor</span></li>
+                                <li class="btn-wrap"><a href="#" class="btn btn-icon btn-xl btn-secondary"
+                                                        data-toggle="modal"
+                                                        data-target="#withdraw-anchor"><em
+                                            class="icon ni ni-arrow-to-left"></em></a><span
+                                        class="btn-extext">Withdraw from Anchor</span></li>
+                            @endif
                         </ul>
                     </div><!-- .nk-block-content -->
                 </div><!-- .nk-block-between -->
