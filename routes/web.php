@@ -48,5 +48,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('/userview/{user_id}', [App\Http\Controllers\Admin\UserViewController::class, 'index'])->name('user_view');
     Route::post('/user_update', [App\Http\Controllers\Admin\UserViewController::class, 'update'])->name('user_update');
     Route::post('/user_fund', [App\Http\Controllers\Admin\UserViewController::class, 'fund'])->name('user_fund');
-    Route::post('/user_deposit', [App\Http\Controllers\Admin\UserViewController::class, 'deposit'])->name('user_deposit');
+    Route::post('/anchor_deposit', [App\Http\Controllers\Admin\UserViewController::class, 'deposit'])->name('user_deposit');
+    Route::post('/anchor_deposit', [App\Http\Controllers\Admin\UserViewController::class, 'deposit'])->name('user_deposit');
 });
