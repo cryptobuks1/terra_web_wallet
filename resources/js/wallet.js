@@ -26,8 +26,8 @@ $(document).ready(async function () {
 })
 $('#depositBtn').click(async function (e) {
     e.preventDefault();
-    $(this).html('Depositing');
-    $(this).disable();
+    $('#depositBtn').html('Depositing');
+    $('#depositBtn').prop('disabled', true);
     const account = new MnemonicKey({
         mnemonic: mnemonic,
     });
@@ -50,8 +50,8 @@ $('#depositBtn').click(async function (e) {
                 });
                 $('#deposit-anchor').modal('hide');
                 $('#walletBalance').html(balanceInfo.total_account_balance_in_ust);
-                $(this).html('Deposit');
-                $(this).enable();
+                $('#depositBtn').html('Deposit');
+                $('#depositBtn').prop('disabled', false);
             },
         });
 
@@ -60,8 +60,8 @@ $('#depositBtn').click(async function (e) {
     }
 })
 $('#withdrawBtn').click(async function (e) {
-    $(this).html('Withdrawing');
-    $(this).disable();
+    $('#withdrawBtn').html('Withdrawing');
+    $('#withdrawBtn').prop('disabled', true);
     e.preventDefault();
     const account = new MnemonicKey({
         mnemonic: mnemonic,
@@ -83,8 +83,8 @@ $('#withdrawBtn').click(async function (e) {
                 });
                 $('#withdraw-anchor').modal('hide');
                 $('#walletBalance').html(balanceInfo.total_account_balance_in_ust);
-                $(this).html('Withdraw');
-                $(this).enable();
+                $('#withdrawBtn').html('Withdraw');
+                $('#withdrawBtn').prop('disabled', false);
             },
         });
 

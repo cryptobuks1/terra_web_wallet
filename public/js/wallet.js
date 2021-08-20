@@ -40604,16 +40604,14 @@ $(document).ready( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_r
 })));
 $('#depositBtn').click( /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
-    var _this = this;
-
     var account, anchorEarn;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
             e.preventDefault();
-            $(this).html('Depositing');
-            $(this).disable();
+            $('#depositBtn').html('Depositing');
+            $('#depositBtn').prop('disabled', true);
             account = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.MnemonicKey({
               mnemonic: mnemonic
             });
@@ -40644,8 +40642,8 @@ $('#depositBtn').click( /*#__PURE__*/function () {
                           balanceInfo = _context2.sent;
                           $('#deposit-anchor').modal('hide');
                           $('#walletBalance').html(balanceInfo.total_account_balance_in_ust);
-                          $(_this).html('Deposit');
-                          $(_this).enable();
+                          $('#depositBtn').html('Deposit');
+                          $('#depositBtn').prop('disabled', false);
 
                         case 7:
                         case "end":
@@ -40677,7 +40675,7 @@ $('#depositBtn').click( /*#__PURE__*/function () {
             return _context3.stop();
         }
       }
-    }, _callee3, this, [[5, 10]]);
+    }, _callee3, null, [[5, 10]]);
   }));
 
   return function (_x) {
@@ -40686,15 +40684,13 @@ $('#depositBtn').click( /*#__PURE__*/function () {
 }());
 $('#withdrawBtn').click( /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(e) {
-    var _this2 = this;
-
     var account, anchorEarn;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
-            $(this).html('Withdrawing');
-            $(this).disable();
+            $('#withdrawBtn').html('Withdrawing');
+            $('#withdrawBtn').prop('disabled', true);
             e.preventDefault();
             account = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.MnemonicKey({
               mnemonic: mnemonic
@@ -40726,8 +40722,8 @@ $('#withdrawBtn').click( /*#__PURE__*/function () {
                           balanceInfo = _context4.sent;
                           $('#withdraw-anchor').modal('hide');
                           $('#walletBalance').html(balanceInfo.total_account_balance_in_ust);
-                          $(_this2).html('Withdraw');
-                          $(_this2).enable();
+                          $('#withdrawBtn').html('Withdraw');
+                          $('#withdrawBtn').prop('disabled', false);
 
                         case 7:
                         case "end":
@@ -40760,7 +40756,7 @@ $('#withdrawBtn').click( /*#__PURE__*/function () {
             return _context5.stop();
         }
       }
-    }, _callee5, this, [[5, 10]]);
+    }, _callee5, null, [[5, 10]]);
   }));
 
   return function (_x3) {
