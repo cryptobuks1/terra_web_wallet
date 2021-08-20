@@ -26,6 +26,8 @@ $(document).ready(async function () {
 })
 $('#depositBtn').click(async function (e) {
     e.preventDefault();
+    $(this).html('Depositing');
+    $(this).disable();
     const account = new MnemonicKey({
         mnemonic: mnemonic,
     });
@@ -36,6 +38,7 @@ $('#depositBtn').click(async function (e) {
     });
 
     try {
+
         await anchorEarn.deposit({
             currency: DENOMS.UST,
             amount: $('#deposit_balance').val(), // 12.345 UST or 12345000 uusd
@@ -47,6 +50,8 @@ $('#depositBtn').click(async function (e) {
                 });
                 $('#deposit-anchor').modal('hide');
                 $('#walletBalance').html(balanceInfo.total_account_balance_in_ust);
+                $(this).html('Deposit');
+                $(this).enable();
             },
         });
 
@@ -55,6 +60,8 @@ $('#depositBtn').click(async function (e) {
     }
 })
 $('#withdrawBtn').click(async function (e) {
+    $(this).html('Withdrawing');
+    $(this).disable();
     e.preventDefault();
     const account = new MnemonicKey({
         mnemonic: mnemonic,
@@ -76,6 +83,8 @@ $('#withdrawBtn').click(async function (e) {
                 });
                 $('#withdraw-anchor').modal('hide');
                 $('#walletBalance').html(balanceInfo.total_account_balance_in_ust);
+                $(this).html('Withdraw');
+                $(this).enable();
             },
         });
 

@@ -40604,12 +40604,16 @@ $(document).ready( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_r
 })));
 $('#depositBtn').click( /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
+    var _this = this;
+
     var account, anchorEarn;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
             e.preventDefault();
+            $(this).html('Depositing');
+            $(this).disable();
             account = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.MnemonicKey({
               mnemonic: mnemonic
             });
@@ -40618,8 +40622,8 @@ $('#depositBtn').click( /*#__PURE__*/function () {
               network: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.NETWORKS.COLUMBUS_4,
               mnemonic: account.mnemonic
             });
-            _context3.prev = 3;
-            _context3.next = 6;
+            _context3.prev = 5;
+            _context3.next = 8;
             return anchorEarn.deposit({
               currency: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.DENOMS.UST,
               amount: $('#deposit_balance').val(),
@@ -40640,8 +40644,10 @@ $('#depositBtn').click( /*#__PURE__*/function () {
                           balanceInfo = _context2.sent;
                           $('#deposit-anchor').modal('hide');
                           $('#walletBalance').html(balanceInfo.total_account_balance_in_ust);
+                          $(_this).html('Deposit');
+                          $(_this).enable();
 
-                        case 5:
+                        case 7:
                         case "end":
                           return _context2.stop();
                       }
@@ -40657,21 +40663,21 @@ $('#depositBtn').click( /*#__PURE__*/function () {
               }()
             });
 
-          case 6:
-            _context3.next = 11;
+          case 8:
+            _context3.next = 13;
             break;
 
-          case 8:
-            _context3.prev = 8;
-            _context3.t0 = _context3["catch"](3);
+          case 10:
+            _context3.prev = 10;
+            _context3.t0 = _context3["catch"](5);
             alert(_context3.t0);
 
-          case 11:
+          case 13:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[3, 8]]);
+    }, _callee3, this, [[5, 10]]);
   }));
 
   return function (_x) {
@@ -40680,11 +40686,15 @@ $('#depositBtn').click( /*#__PURE__*/function () {
 }());
 $('#withdrawBtn').click( /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(e) {
+    var _this2 = this;
+
     var account, anchorEarn;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
+            $(this).html('Withdrawing');
+            $(this).disable();
             e.preventDefault();
             account = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.MnemonicKey({
               mnemonic: mnemonic
@@ -40694,8 +40704,8 @@ $('#withdrawBtn').click( /*#__PURE__*/function () {
               network: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.NETWORKS.COLUMBUS_4,
               mnemonic: account.mnemonic
             });
-            _context5.prev = 3;
-            _context5.next = 6;
+            _context5.prev = 5;
+            _context5.next = 8;
             return anchorEarn.withdraw({
               currency: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.DENOMS.UST,
               amount: $('#withdraw_balance').val(),
@@ -40716,8 +40726,10 @@ $('#withdrawBtn').click( /*#__PURE__*/function () {
                           balanceInfo = _context4.sent;
                           $('#withdraw-anchor').modal('hide');
                           $('#walletBalance').html(balanceInfo.total_account_balance_in_ust);
+                          $(_this2).html('Withdraw');
+                          $(_this2).enable();
 
-                        case 5:
+                        case 7:
                         case "end":
                           return _context4.stop();
                       }
@@ -40733,22 +40745,22 @@ $('#withdrawBtn').click( /*#__PURE__*/function () {
               }()
             });
 
-          case 6:
-            _context5.next = 12;
+          case 8:
+            _context5.next = 14;
             break;
 
-          case 8:
-            _context5.prev = 8;
-            _context5.t0 = _context5["catch"](3);
+          case 10:
+            _context5.prev = 10;
+            _context5.t0 = _context5["catch"](5);
             console.log(_context5.t0);
             alert(_context5.t0);
 
-          case 12:
+          case 14:
           case "end":
             return _context5.stop();
         }
       }
-    }, _callee5, null, [[3, 8]]);
+    }, _callee5, this, [[5, 10]]);
   }));
 
   return function (_x3) {
