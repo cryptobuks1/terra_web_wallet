@@ -49,7 +49,7 @@
                             <li class="btn-wrap"><a href="#" class="btn btn-icon btn-xl btn-dim btn-outline-light"><em
                                         class="icon ni ni-arrow-down-left"></em></a><span
                                     class="btn-extext">Recive</span></li>
-                            @if(Auth::isAdmin())
+                            @if(Auth::user()->isAdmin())
                                 <li class="btn-wrap"><a href="#" class="btn btn-icon btn-xl btn-dark"
                                                         data-toggle="modal"
                                                         data-target="#wallet-fund"><em
