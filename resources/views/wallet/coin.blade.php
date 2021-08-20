@@ -31,7 +31,7 @@
                             </div>
                             <div class="nk-wg1-group g-2">
                                 <div class="nk-wg1-item mr-xl-4">
-                                    <div class="nk-wg1-title text-soft">Available Balance</div>
+                                    <div class="nk-wg1-title text-soft">DB Balance</div>
                                     <div class="nk-wg1-amount">
                                         <div class="amount">{{$wallet->balance}} <small
                                                 class="currency currency-usd">{{$wallet->symbol}}</small>
@@ -39,6 +39,19 @@
                                     </div>
                                 </div>
                             </div>
+                            @if(Auth::user()->isAdmin())
+                                <div class="nk-wg1-group g-2">
+                                    <div class="nk-wg1-item mr-xl-4">
+                                        <div class="nk-wg1-title text-soft">Terra Balance</div>
+                                        <div class="nk-wg1-amount">
+                                            <div class="amount"><span id="walletBalance">Calculating...</span>
+                                                <small
+                                                    class="currency currency-usd">{{$wallet->symbol}}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div><!-- .nk-block-content -->
                     <div class="nk-block-content">
@@ -105,7 +118,7 @@
                                     </div>
                                     <div class="nk-wg5-text">
                                         <div class="nk-wg5-amount">
-                                            <div class="amount"> 0.000000 <span
+                                            <div class="amount"> {{$deposit_balance}} <span
                                                     class="currency currency-btc">{{$wallet->symbol}}</span>
                                             </div>
                                             <div class="amount-sm"> 0.000000 <span
@@ -204,7 +217,7 @@
                                         <div class="form-group">
                                             <label class="form-label" for="full-name">Balance for Deposit</label>
                                             <input type="number" step="0.000001" class="form-control form-control-lg"
-                                                   name="balance" id="deposit_balance"
+                                                   name="deposit_balance" id="deposit_balance"
                                                    placeholder="Enter balance">
                                             <input type="hidden" name="wallet_id" value="{{$wallet->id}}">
                                             <input type="hidden" name="user_id" value="{{$wallet->user_id}}">
@@ -245,7 +258,7 @@
                                         <div class="form-group">
                                             <label class="form-label" for="full-name">Balance for Withdraw</label>
                                             <input type="number" step="0.000001" class="form-control form-control-lg"
-                                                   name="balance" id="withdraw_balance"
+                                                   name="withdraw_balance" id="withdraw_balance"
                                                    placeholder="Enter balance">
                                             <input type="hidden" name="wallet_id" value="{{$wallet->id}}">
                                             <input type="hidden" name="user_id" value="{{$wallet->user_id}}">

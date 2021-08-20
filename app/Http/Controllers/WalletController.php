@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Deposit;
 use Illuminate\Http\Request;
 use \CoinMarketCapApi;
 use App\Models\Wallet;
@@ -37,6 +38,11 @@ class WalletController extends Controller
     public function coinWallet($walletId)
     {
         $wallet = Wallet::find($walletId);
-        return view('wallet/coin', ['wallet' => $wallet]);
+        $deposit_balance = Deposit::where('wallet_id', $walletId)
+            ->groupBy('wallet_id')
+            ->selectRaw('sum(amount) as deposit_balance')
+            ->pluck('deposit_balance')
+            ->first();
+        return view('wallet/coin', ['wallet' => $wallet, 'deposit_balance'=>$deposit_balance]);
     }
 }

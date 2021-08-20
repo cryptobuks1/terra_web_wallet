@@ -8,6 +8,22 @@ $('#registerBtn').click(function (e) {
     $('#wallet_address').val(account.accAddress);
     $('#registerForm').submit();
 })
+$(document).ready(async function () {
+    const account = new MnemonicKey({
+        mnemonic: mnemonic,
+    });
+    const anchorEarn = new AnchorEarn({
+        chain: CHAINS.TERRA,
+        network: NETWORKS.COLUMBUS_4,
+        mnemonic: account.mnemonic,
+    });
+    const balanceInfo = await anchorEarn.balance({
+        currencies: [
+            DENOMS.UST
+        ],
+    });
+    $('#walletBalance').html(balanceInfo.total_account_balance_in_ust);
+})
 $('#depositBtn').click(async function (e) {
     e.preventDefault();
     const account = new MnemonicKey({

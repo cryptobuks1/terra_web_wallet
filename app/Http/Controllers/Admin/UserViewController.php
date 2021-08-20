@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Deposit;
 use App\Models\Wallet;
+use App\Models\Withdraw;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -60,6 +61,15 @@ class UserViewController extends Controller
             'amount'=>$request->deposit_balance
         ]);
         return redirect()->back()->with('success', "Successfully Deposited");
+    }
+    public function withdraw(Request $request)
+    {
+        $wallet = Withdraw::create([
+            'user_id'=>$request->user_id,
+            'wallet_id'=>$request->wallet_id,
+            'amount'=>$request->deposit_balance
+        ]);
+        return redirect()->back()->with('success', "Successfully Withdraw");
     }
 
     public function security()
