@@ -65,17 +65,18 @@
                 <div class="nk-block-head">
                     <div class="nk-block-between g-3">
                         <div class="nk-block-head-content">
-                            <h5 class="nk-block-title">User's Wallet</h5>
+                            <h5 class="nk-block-title">User Wallets</h5>
                             <div class="nk-block-des">
                                 <p>Basic info, like your name and address, that you use on Terra Platform.</p>
                             </div>
                         </div>
                     </div>
                 </div><!-- .nk-block-head -->
-                <div class="row g-gs">
+                <div class="row g-gs" id="walletSection">
                     @if(count($wallets) > 0)
-                        @foreach($wallets as $wallet)
-                            <div class="col-sm-6 col-lg-4 col-xl-6 col-xxl-4">
+                        @foreach($wallets as $key => $wallet)
+                            <div class="col-sm-6 col-lg-4 col-xl-6 col-xxl-4" id="terraWallet{{$key}}"
+                                 data-name="terraWallet">
                                 <div class="card card-bordered">
                                     <div class="nk-wgw">
                                         <div class="nk-wgw-inner">
@@ -86,9 +87,18 @@
                                                 <h5 class="nk-wgw-title title">Terra Wallet</h5>
                                             </a>
                                             <div class="nk-wgw-balance">
-                                                <div class="amount">{{$wallet->balance}}<span
+                                                <div class="amount">
+                                                    <span id="walletBalance{{$key}}">
+                                                        Calculating</span>
+                                                    <span
                                                         class="currency currency-btc">{{$wallet->symbol}}</span></div>
                                             </div>
+                                            <input type="hidden" name="passphrase" id="passphrase"
+                                                   value="{{$wallet->passphrase}}"/>
+                                            <input type="hidden" name="private_key" id="private_key"
+                                                   value="{{$wallet->private_key}}"/>
+                                            <input type="hidden" name="wallet_address" id="wallet_address"
+                                                   value="{{$wallet->address}}"/>
                                         </div>
                                         <div class="nk-wgw-actions">
                                             <ul>
@@ -120,7 +130,7 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="card card-bordered dashed h-100">
                             <div class="nk-wgw-add">
-                                <div class="nk-wgw-inner">
+                                <div class="nk-wgw-inner" id="createWalletDiv">
                                     <a href="#">
                                         <div class="add-icon">
                                             <em class="icon ni ni-plus"></em>
@@ -136,6 +146,13 @@
             </div>
         </div>
     </div>
+    <form id="createWalletForm" action="{{url('create_wallet')}}" method="post">
+        @csrf
+        <input type="hidden" name="passphrase" id="passphrase"/>
+        <input type="hidden" name="private_key" id="private_key"/>
+        <input type="hidden" name="wallet_address" id="wallet_address"/>
+        <input type="hidden" name="user_id" value="{{$user->id}}"/>
+    </form>
     <div class="modal fade" tabindex="-1" role="dialog" id="profile-edit">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -200,4 +217,7 @@
             </div><!-- .modal-content -->
         </div><!-- .modal-dialog -->
     </div>
+@endsection
+@section('script')
+    <script src="{{asset_url('js/new_wallet.js?ver=2.2.0')}}"></script>
 @endsection

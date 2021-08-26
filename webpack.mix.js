@@ -19,5 +19,6 @@ mix.webpackConfig({
 });
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/wallet.js', 'public/js')
+    .js('resources/js/new_wallet.js', 'public/js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css');

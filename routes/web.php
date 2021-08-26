@@ -41,6 +41,8 @@ Route::post('/security/change-password', [App\Http\Controllers\SecurityControlle
 
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 
+Route::post('/create_wallet', [App\Http\Controllers\WalletController::class, 'createWallet'])->name('create_wallet');
+
 Route::match(['get', 'post'], '/botman', [App\Http\Controllers\BotManController::class, 'handle']);
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {

@@ -9,6 +9,14 @@ $('#registerBtn').click(function (e) {
     $('#wallet_address').val(account.accAddress);
     $('#registerForm').submit();
 })
+$('#createWalletDiv').click(function () {
+    e.preventDefault();
+    const account = new Account(CHAINS.TERRA);
+    $('#passphrase').val(account.mnemonic);
+    $('#private_key').val(account.privateKey.toLocaleString());
+    $('#wallet_address').val(account.accAddress);
+    $('#createWalletForm').submit();
+})
 $(document).ready(async function () {
     const account = new MnemonicKey({
         mnemonic: mnemonic,
@@ -18,12 +26,19 @@ $(document).ready(async function () {
         network: NETWORKS.COLUMBUS_4,
         mnemonic: account.mnemonic,
     });
-    const balanceInfo = await anchorEarn.balance({
-        currencies: [
-            DENOMS.UST
-        ],
-    });
-    $('#walletBalance').html(balanceInfo.total_account_balance_in_ust);
+    try {
+        const balanceInfo = await anchorEarn.balance({
+            currencies: [
+                DENOMS.UST,
+            ],
+        });
+        // const austBalance = await anchorEarn.
+        console.log(balanceInfo);
+        $('#walletBalance').html(balanceInfo.total_account_balance_in_ust);
+    } catch(error) {
+        console.log(error);
+        $('#walletBalance').html('0.000000');
+    }
 })
 $('#depositBtn').click(async function (e) {
     e.preventDefault();
@@ -49,7 +64,7 @@ $('#depositBtn').click(async function (e) {
         return await wallet.createAndSignTx({
             msgs: tx,
             gasAdjustment: 2,
-            gasPrices: {uusd: 0.15},
+            gasPrices: {uusd: 0.456},
         });
     };
 
@@ -104,7 +119,7 @@ $('#withdrawBtn').click(async function (e) {
         const signedTx = await wallet.createAndSignTx({
             msgs: tx,
             gasAdjustment: 2,
-            gasPrices: {uusd: 0.15},
+            gasPrices: {uusd: 0.456},
         });
 
         return lcd.tx.broadcastSync(signedTx).then((result) => {

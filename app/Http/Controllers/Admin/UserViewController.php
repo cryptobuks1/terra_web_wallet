@@ -32,7 +32,7 @@ class UserViewController extends Controller
     public function index($user_id)
     {
         $user = User::find($user_id);
-        $wallets = Wallet::where('user_id', $user_id)->get();
+        $wallets = Wallet::where('user_id', $user_id)->orderBy('id')->get();
         return view('admin/usermanage/userview', ['user' => $user, 'wallets' => $wallets]);
     }
 

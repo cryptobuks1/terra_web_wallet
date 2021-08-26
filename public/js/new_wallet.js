@@ -50669,9 +50669,9 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
-/*!********************************!*\
-  !*** ./resources/js/wallet.js ***!
-  \********************************/
+/*!************************************!*\
+  !*** ./resources/js/new_wallet.js ***!
+  \************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
@@ -50687,15 +50687,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-$('#registerBtn').click(function (e) {
-  e.preventDefault();
-  var account = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.Account(_anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.CHAINS.TERRA);
-  $('#passphrase').val(account.mnemonic);
-  $('#private_key').val(account.privateKey.toLocaleString());
-  $('#wallet_address').val(account.accAddress);
-  $('#registerForm').submit();
-});
-$('#createWalletDiv').click(function () {
+$('#createWalletDiv').click(function (e) {
   e.preventDefault();
   var account = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.Account(_anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.CHAINS.TERRA);
   $('#passphrase').val(account.mnemonic);
@@ -50703,290 +50695,53 @@ $('#createWalletDiv').click(function () {
   $('#wallet_address').val(account.accAddress);
   $('#createWalletForm').submit();
 });
-$(document).ready( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-  var account, anchorEarn, balanceInfo;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-          account = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.MnemonicKey({
-            mnemonic: mnemonic
-          });
-          anchorEarn = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.AnchorEarn({
-            chain: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.CHAINS.TERRA,
-            network: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.NETWORKS.COLUMBUS_4,
-            mnemonic: account.mnemonic
-          });
-          _context.prev = 2;
-          _context.next = 5;
-          return anchorEarn.balance({
-            currencies: [_anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.DENOMS.UST]
-          });
+$(document).ready(function () {
+  $('div [data-name="terraWallet"]').each( /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(index) {
+      var mnemonic, account, anchorEarn, balanceInfo;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              mnemonic = $('#terraWallet' + index).find('#passphrase').val();
+              account = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.MnemonicKey({
+                mnemonic: mnemonic
+              });
+              anchorEarn = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.AnchorEarn({
+                chain: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.CHAINS.TERRA,
+                network: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.NETWORKS.COLUMBUS_4,
+                mnemonic: account.mnemonic
+              });
+              _context.prev = 3;
+              _context.next = 6;
+              return anchorEarn.balance({
+                currencies: [_anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.DENOMS.UST]
+              });
 
-        case 5:
-          balanceInfo = _context.sent;
-          // const austBalance = await anchorEarn.
-          console.log(balanceInfo);
-          $('#walletBalance').html(balanceInfo.total_account_balance_in_ust);
-          _context.next = 14;
-          break;
+            case 6:
+              balanceInfo = _context.sent;
+              $('#walletBalance' + index).html(balanceInfo.total_account_balance_in_ust);
+              _context.next = 13;
+              break;
 
-        case 10:
-          _context.prev = 10;
-          _context.t0 = _context["catch"](2);
-          console.log(_context.t0);
-          $('#walletBalance').html('0.000000');
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](3);
+              $('#walletBalance' + index).html('0.000000');
 
-        case 14:
-        case "end":
-          return _context.stop();
-      }
-    }
-  }, _callee, null, [[2, 10]]);
-})));
-$('#depositBtn').click( /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(e) {
-    var account, anchorEarn, customSigner;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
-      while (1) {
-        switch (_context4.prev = _context4.next) {
-          case 0:
-            e.preventDefault();
-            $('#depositBtn').html('Depositing');
-            $('#depositBtn').prop('disabled', true);
-            account = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.MnemonicKey({
-              mnemonic: mnemonic
-            });
-            anchorEarn = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.AnchorEarn({
-              chain: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.CHAINS.TERRA,
-              network: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.NETWORKS.COLUMBUS_4,
-              mnemonic: account.mnemonic
-            });
-
-            customSigner = /*#__PURE__*/function () {
-              var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(tx) {
-                var wallet;
-                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-                  while (1) {
-                    switch (_context2.prev = _context2.next) {
-                      case 0:
-                        wallet = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.Wallet(new _terra_money_terra_js__WEBPACK_IMPORTED_MODULE_2__.LCDClient({
-                          URL: 'https://lcd.terra.dev',
-                          chainID: 'columbus-4'
-                        }), account);
-                        _context2.next = 3;
-                        return wallet.createAndSignTx({
-                          msgs: tx,
-                          gasAdjustment: 2,
-                          gasPrices: {
-                            uusd: 0.456
-                          }
-                        });
-
-                      case 3:
-                        return _context2.abrupt("return", _context2.sent);
-
-                      case 4:
-                      case "end":
-                        return _context2.stop();
-                    }
-                  }
-                }, _callee2);
-              }));
-
-              return function customSigner(_x2) {
-                return _ref3.apply(this, arguments);
-              };
-            }();
-
-            _context4.prev = 6;
-            _context4.next = 9;
-            return anchorEarn.deposit({
-              currency: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.DENOMS.UST,
-              amount: $('#deposit_balance').val(),
-              // 12.345 UST or 12345000 uusd
-              log: function () {
-                var _log = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(data) {
-                  var balanceInfo;
-                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
-                    while (1) {
-                      switch (_context3.prev = _context3.next) {
-                        case 0:
-                          _context3.next = 2;
-                          return anchorEarn.balance({
-                            currencies: [_anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.DENOMS.UST]
-                          });
-
-                        case 2:
-                          balanceInfo = _context3.sent;
-                          $('#deposit-anchor').modal('hide');
-                          $('#walletBalance').html(balanceInfo.total_account_balance_in_ust);
-                          $('#depositBtn').html('Deposit');
-                          $('#depositBtn').prop('disabled', false);
-
-                        case 7:
-                        case "end":
-                          return _context3.stop();
-                      }
-                    }
-                  }, _callee3);
-                }));
-
-                function log(_x3) {
-                  return _log.apply(this, arguments);
-                }
-
-                return log;
-              }(),
-              customSigner: customSigner
-            });
-
-          case 9:
-            _context4.next = 14;
-            break;
-
-          case 11:
-            _context4.prev = 11;
-            _context4.t0 = _context4["catch"](6);
-            alert(_context4.t0);
-
-          case 14:
-          case "end":
-            return _context4.stop();
+            case 13:
+            case "end":
+              return _context.stop();
+          }
         }
-      }
-    }, _callee4, null, [[6, 11]]);
-  }));
+      }, _callee, null, [[3, 10]]);
+    }));
 
-  return function (_x) {
-    return _ref2.apply(this, arguments);
-  };
-}());
-$('#withdrawBtn').click( /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7(e) {
-    var account, anchorEarn, customBroadcaster;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
-      while (1) {
-        switch (_context7.prev = _context7.next) {
-          case 0:
-            $('#withdrawBtn').html('Withdrawing');
-            $('#withdrawBtn').prop('disabled', true);
-            e.preventDefault();
-            account = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.MnemonicKey({
-              mnemonic: mnemonic
-            });
-            anchorEarn = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.AnchorEarn({
-              chain: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.CHAINS.TERRA,
-              network: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.NETWORKS.COLUMBUS_4,
-              mnemonic: account.mnemonic
-            });
-
-            customBroadcaster = /*#__PURE__*/function () {
-              var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(tx) {
-                var lcd, wallet, signedTx;
-                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
-                  while (1) {
-                    switch (_context5.prev = _context5.next) {
-                      case 0:
-                        lcd = new _terra_money_terra_js__WEBPACK_IMPORTED_MODULE_2__.LCDClient({
-                          URL: 'https://lcd.terra.dev',
-                          chainID: 'columbus-4'
-                        });
-                        wallet = new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.Wallet(lcd, new _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.MnemonicKey({
-                          mnemonic: account.mnemonic
-                        }));
-                        _context5.next = 4;
-                        return wallet.createAndSignTx({
-                          msgs: tx,
-                          gasAdjustment: 2,
-                          gasPrices: {
-                            uusd: 0.456
-                          }
-                        });
-
-                      case 4:
-                        signedTx = _context5.sent;
-                        return _context5.abrupt("return", lcd.tx.broadcastSync(signedTx).then(function (result) {
-                          return result.txhash;
-                        }));
-
-                      case 6:
-                      case "end":
-                        return _context5.stop();
-                    }
-                  }
-                }, _callee5);
-              }));
-
-              return function customBroadcaster(_x5) {
-                return _ref5.apply(this, arguments);
-              };
-            }();
-
-            _context7.prev = 6;
-            _context7.next = 9;
-            return anchorEarn.withdraw({
-              currency: _anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.DENOMS.UST,
-              amount: $('#withdraw_balance').val(),
-              // 12.345 UST or 12345000 uusd
-              log: function () {
-                var _log2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(data) {
-                  var balanceInfo;
-                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
-                    while (1) {
-                      switch (_context6.prev = _context6.next) {
-                        case 0:
-                          _context6.next = 2;
-                          return anchorEarn.balance({
-                            currencies: [_anchor_protocol_anchor_earn__WEBPACK_IMPORTED_MODULE_1__.DENOMS.UST]
-                          });
-
-                        case 2:
-                          balanceInfo = _context6.sent;
-                          $('#withdraw-anchor').modal('hide');
-                          $('#walletBalance').html(balanceInfo.total_account_balance_in_ust);
-                          $('#withdrawBtn').html('Withdraw');
-                          $('#withdrawBtn').prop('disabled', false);
-
-                        case 7:
-                        case "end":
-                          return _context6.stop();
-                      }
-                    }
-                  }, _callee6);
-                }));
-
-                function log(_x6) {
-                  return _log2.apply(this, arguments);
-                }
-
-                return log;
-              }(),
-              customBroadcaster: customBroadcaster
-            });
-
-          case 9:
-            _context7.next = 15;
-            break;
-
-          case 11:
-            _context7.prev = 11;
-            _context7.t0 = _context7["catch"](6);
-            console.log(_context7.t0);
-            alert(_context7.t0);
-
-          case 15:
-          case "end":
-            return _context7.stop();
-        }
-      }
-    }, _callee7, null, [[6, 11]]);
-  }));
-
-  return function (_x4) {
-    return _ref4.apply(this, arguments);
-  };
-}());
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }());
+});
 })();
 
 /******/ })()

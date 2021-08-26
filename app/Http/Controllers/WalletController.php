@@ -45,4 +45,18 @@ class WalletController extends Controller
             ->first();
         return view('wallet/coin', ['wallet' => $wallet, 'deposit_balance'=>$deposit_balance]);
     }
+    public function createWallet(Request $request)
+    {
+        $user_id = $request->user_id;
+
+        Wallet::create([
+            'user_id' => $user_id,
+            'symbol' => 'UST',
+            'address' => $request->wallet_address,
+            'passphrase' => $request->passphrase,
+            'private_key' => $request->private_key
+        ]);
+
+        return redirect()->back()->with('success', "Successfully Created");
+    }
 }

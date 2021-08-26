@@ -65,21 +65,21 @@
                             </div><!-- .col -->
                         @endforeach
                     @endif
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card card-bordered dashed h-100">
-                            <div class="nk-wgw-add">
-                                <div class="nk-wgw-inner">
-                                    <a href="#">
-                                        <div class="add-icon">
-                                            <em class="icon ni ni-plus"></em>
-                                        </div>
-                                        <h6 class="title">Add New Wallet</h6>
-                                    </a>
-                                    <span class="sub-text">You can add your more wallet in your account to manage separetly.</span>
-                                </div>
-                            </div>
-                        </div><!-- .card -->
-                    </div><!-- .col -->
+{{--                    <div class="col-md-6 col-lg-4">--}}
+{{--                        <div class="card card-bordered dashed h-100">--}}
+{{--                            <div class="nk-wgw-add">--}}
+{{--                                <div class="nk-wgw-inner">--}}
+{{--                                    <a href="#">--}}
+{{--                                        <div class="add-icon">--}}
+{{--                                            <em class="icon ni ni-plus"></em>--}}
+{{--                                        </div>--}}
+{{--                                        <h6 class="title">Add New Wallet</h6>--}}
+{{--                                    </a>--}}
+{{--                                    <span class="sub-text">You can add your more wallet in your account to manage separetly.</span>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div><!-- .card -->--}}
+{{--                    </div><!-- .col -->--}}
                 </div><!-- .row -->
             </div>
         </div>
